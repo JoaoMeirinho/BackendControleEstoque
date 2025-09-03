@@ -1,5 +1,7 @@
 using BackendControleEstoque.Infra;
+using BackendControleEstoque.Mapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(config => config.AddProfile(new AutoMapperProfile()));
 
 var connection = builder.Configuration.GetConnectionString("DevBD");
 
