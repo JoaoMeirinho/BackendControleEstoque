@@ -1,7 +1,9 @@
 using BackendControleEstoque.Infra;
 using BackendControleEstoque.Mapper;
+using BackendControleEstoque.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(config => config.AddProfile(new AutoMapperProfile()));
+builder.Services.AddDefaultIdentity<User>(opt =>
+{
+    opt.SignIn.RequireConfirmedAccount = true;
+}).AddEntityFrameworkStores<AppDbContext>();
 
 var connection = builder.Configuration.GetConnectionString("DevBD");
 

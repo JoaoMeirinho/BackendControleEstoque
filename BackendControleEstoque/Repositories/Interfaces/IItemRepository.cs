@@ -1,7 +1,7 @@
 ﻿using BackendControleEstoque.DTOs.Response;
 using BackendControleEstoque.DTOs.Request;
 
-namespace BackendControleEstoque.Repositories
+namespace BackendControleEstoque.Repositories.Interfaces
 {
     public interface IItemRepository
     {
