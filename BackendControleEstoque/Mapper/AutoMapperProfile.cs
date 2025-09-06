@@ -1,4 +1,8 @@
 ﻿using AutoMapper;
+using BackendControleEstoque.DTOs.Request;
+using BackendControleEstoque.DTOs.Response;
+using BackendControleEstoque.Models;
+using System.Security.Cryptography.X509Certificates;
 
 namespace BackendControleEstoque.Mapper
 {
@@ -6,7 +10,13 @@ namespace BackendControleEstoque.Mapper
     {
         public AutoMapperProfile()
         {
-            // Add your mappings here
+            ConfigureMappings();
+        }
+
+        private void ConfigureMappings()
+        {
+            CreateMap<Item, ItemCreatedResponse>();
+            CreateMap<ItemCreateRequest, Item>();
         }
     }
 }

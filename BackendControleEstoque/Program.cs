@@ -4,6 +4,8 @@ using BackendControleEstoque.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
+using BackendControleEstoque.Repositories.Interfaces;
+using BackendControleEstoque.Repositories;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +28,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseMySql(connection, ServerVersion.AutoDetect(connection));
 });
+
+builder.Services.AddScoped<IItemRepository, ItemRepository>();
 
 var app = builder.Build();
 
