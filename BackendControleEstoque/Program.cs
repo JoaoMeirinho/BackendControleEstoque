@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,7 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(config => config.AddProfile(new AutoMapperProfile()));
-builder.Services.AddDefaultIdentity<User>(opt =>
+builder.Services.AddIdentityCore<User>(opt =>
 {
     opt.SignIn.RequireConfirmedAccount = true;
 }).AddEntityFrameworkStores<AppDbContext>();
