@@ -10,7 +10,7 @@ namespace BackendControleEstoque.Models.Configuration
             builder.Property(i => i.Nome).IsRequired().HasMaxLength(100);
             builder.Property(i => i.Descricao).HasMaxLength(500);
             builder.Property(i => i.Quantidade).IsRequired();
-            builder.Property(i => i.LastModified).IsRequired().HasDefaultValueSql("GETDATE()");
+            builder.Property(i => i.LastModified).HasColumnType("DATETIME").IsRequired().HasDefaultValueSql("NOW()");
         }
     }
     

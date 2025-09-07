@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BackendControleEstoque.Migrations
 {
     /// <inheritdoc />
-    public partial class initialMigration3 : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -39,6 +39,8 @@ namespace BackendControleEstoque.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Discriminator = table.Column<string>(type: "varchar(13)", maxLength: 13, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     UserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -79,7 +81,7 @@ namespace BackendControleEstoque.Migrations
                     Descricao = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Quantidade = table.Column<int>(type: "int", nullable: false),
-                    LastModified = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValueSql: "GETDATE()")
+                    LastModified = table.Column<DateTime>(type: "DATETIME", nullable: false, defaultValueSql: "NOW()")
                 },
                 constraints: table =>
                 {

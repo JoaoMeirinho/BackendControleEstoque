@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using BackendControleEstoque.Repositories.Interfaces;
 using BackendControleEstoque.Repositories;
+using BackendControleEstoque.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddIdentityCore<User>().AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
+builder.Services.AddScoped<ItemService>();
 
 var app = builder.Build();
 
