@@ -17,17 +17,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(config => config.AddProfile(new AutoMapperProfile()));
-builder.Services.AddIdentityCore<User>(opt =>
-{
-    opt.SignIn.RequireConfirmedAccount = true;
-}).AddEntityFrameworkStores<AppDbContext>();
 
-var connection = builder.Configuration.GetConnectionString("DevBD");
+var connection = builder.Configuration.GetConnectionString("defaultConnection");
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.UseMySql(connection, ServerVersion.AutoDetect(connection));
+    options.UseMySql(connection, new MySqlServerVersion(new Version(8, 0, 39)));
 });
+builder.Services.AddIdentityCore<User>().AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
 
