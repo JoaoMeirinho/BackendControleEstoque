@@ -9,5 +9,6 @@ namespace BackendControleEstoque.Models
         public TipoMovimentoEnum TipoMovimento { get; set; }
         public int Quantidade { get; set; }
         public Item Item { get; set; }
+        public DateTime DataMovimentacao { get; set; }
     }
 }
